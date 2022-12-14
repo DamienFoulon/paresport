@@ -1,0 +1,95 @@
+header {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  .preventHeadband {
+    background-color: black;
+    color: var(--colors-white);
+    font-size: 0.8rem;
+    text-align: center;
+    margin: 0;
+    padding: .6rem 1rem;
+
+    h1 {
+      font-size: 0.9rem;
+    }
+
+    p, h1 {
+      margin: 0;
+    }
+
+    a {
+      color: var(--colors-red-salsa);
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    justify-content: space-between;
+    padding: .6rem 1rem;
+    background-color: var(--colors-red-salsa);
+    font-size: .8rem;
+    font-weight: 600;
+
+    .navbar-left {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        font-family: "Bison Bold", sans-serif;
+        font-size: 1.3rem;
+        font-style: italic;
+        margin-right: 1em;
+        padding: 0 !important;
+      }
+
+      a {
+        padding: .5rem 1rem;
+        color: var(--colors-white);
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
+
+    .navbar-right {
+      display: flex;
+      flex-direction: row;
+
+      .navbar-btn {
+        margin: 0 .25rem;
+      }
+
+      .navbar-registerBtn {
+        background-color: var(--colors-white);
+        color: var(--colors-red-salsa);
+        padding: 0.25em 1em;
+        border-radius: 0.5rem;
+      }
+
+      .navbar-loginBtn {
+        background-color: var(--colors-dark-red-salsa);
+        color: var(--colors-white);
+        padding: 0.25em 1em;
+        border-radius: 0.5rem;
+        &:hover {
+          background-color: var(--colors-light-red-salsa);
+        }
+      }
+      a {
+        padding: 0 1rem;
+      }
+    }
+  }
+}

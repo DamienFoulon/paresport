@@ -1,0 +1,30 @@
+.searchBar {
+  width: 100%;
+  background-color: var(--colors-white);
+  border: 1px solid var(--colors-white);
+  border-radius: 0.5rem;
+  padding: .5rem 0;
+  font-size: 1.1rem;
+
+  .searchBar-input {
+    border: none;
+    background-color: var(--colors-white);
+    font-size: .9rem;
+
+    &::placeholder {
+      color: var(--colors-light-grey);
+      font-size: .9rem;
+    }
+    &:focus {
+      outline: none;
+      &::placeholder {
+        color: transparent;
+      }
+    }
+  }
+
+  .searchBar-icon {
+    color: var(--colors-red-salsa);
+    padding: 0 0.5rem;
+  }
+}

@@ -1,0 +1,74 @@
+// Import Fonts
+@import url('./assets/fonts/fonts.scss');
+
+// Import Styles
+@import url('./assets/css/normalize.scss');
+
+// Variables
+* {
+  --colors-eirie-black: #201D1A;
+  --colors-red-salsa: #D2161E;
+  --colors-light-red-salsa: #FF4152;
+  --colors-dark-red-salsa: #a1242b;
+  --colors-yellow: #FFCC00;
+  --colors-light-yellow: #FFE066;
+  --colors-royal-blue: #0A2463;
+  --colors-cg-blue: #247BA0;
+  --colors-platinum: #E2E2E2;
+  --colors-white: #FFFFFF;
+  --colors-light-background: #EEF0F3;
+  --colors-light-grey: #9AA1AF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  color: var(--colors-eirie-black);
+  background-color: var(--colors-light-background);
+  font-size: .6rem;
+  line-height: 1.5;
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 0.1rem;
+  }
+
+  .container {
+    margin-top: 1rem;
+    padding: 0 1%;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+
+  a {
+    color: var(--colors-platinum);
+    text-decoration: none;
+  }
+
+  .red-salsa {
+    color: var(--colors-red-salsa);
+  }
+
+  .royal-blue {
+    color: var(--colors-royal-blue);
+  }
+
+  .cg-blue {
+    color: var(--colors-cg-blue);
+  }
+
+  .container {
+    display: flex;
+  }
+}
