@@ -22,7 +22,11 @@ export default function Match(props) {
             src={`../../../assets/img/competitions/icons/${props.matchCompetition}`}
             alt=""
           />
-          <p>{props.matchTitle}</p>
+          <p>
+            {props.matchTitle.split(" ").map((word) => {
+              return word + " ";
+            })}
+          </p>
         </div>
         <div className="biggest-daily-match-teams">
           <div className="biggest-daily-match-team1">{props.team1}</div>

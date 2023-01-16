@@ -19,6 +19,8 @@ const resources = {
       "Get free coins": "Get free coins",
       "You can claim free coins every days !":
         "You can claim free coins every days !",
+      Round: "Round",
+      Match: "Match",
     },
   },
   fr: {
@@ -39,6 +41,8 @@ const resources = {
       "Get free coins": "Obtenez des crédits gratuits",
       "You can claim free coins every days !":
         "Récupérez des crédits gratuits tous les jours !",
+      Round: "Manche",
+      Match: "Matche",
     },
   },
 };

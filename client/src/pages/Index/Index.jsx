@@ -10,11 +10,19 @@ import Banner from "../../components/Banner/Banner";
 import Match from "../../components/Match/Match";
 
 export default function Index() {
-  const { i18n, t } = useTranslation();
+  const { i18n } = useTranslation();
   const urlLang = window.location.pathname.split("/")[1];
   if (urlLang !== i18n.language) {
     i18n.changeLanguage(urlLang);
   }
+
+  const [matches, setMatches] = React.useState([{}]);
+
+  React.useEffect(() => {
+    fetch("/api/valorant/matches?sort=upcoming-date")
+      .then((response) => response.json())
+      .then((data) => setMatches(data));
+  }, []);
 
   return (
     <>
@@ -27,12 +35,12 @@ export default function Index() {
           />
           <List title={"Top competitions"}>
             <Item
-              gameIcon={"lol"}
+              gameIcon={"league-of-legends"}
               competitionIcon={"lol-lec"}
               competitionName={"League of Legend LEC"}
             />
             <Item
-              gameIcon={"lol"}
+              gameIcon={"league-of-legends"}
               competitionIcon={"lol-lcs"}
               competitionName={"League of Legend LCS"}
             />
@@ -68,26 +76,60 @@ export default function Index() {
             description={"You can claim free coins every days !"}
           />
           <div className="biggest-daily-matchs row">
-            <Match
-              matchTitle={"Valorant Masters - Semi-Final"}
-              matchGame={"valorant"}
-              matchCompetition={"valorant-masters"}
-              team1={"KCorp"}
-              odd1={"1.25"}
-              oddDraw={"5.00"}
-              team2={"Vitality"}
-              odd2={"8.75"}
-            />
-            <Match
-              matchTitle={"CS:GO ESL - Final"}
-              matchGame={"csgo"}
-              matchCompetition={"csgo-esl"}
-              team1={"G2"}
-              odd1={"2.25"}
-              oddDraw={"1.30"}
-              team2={"Cloud9"}
-              odd2={"0.75"}
-            />
+            {matches.length > 1 ? (
+              <>
+                <Match
+                  matchTitle={
+                      matches[0].name + " - " + matches[0].league.name + " " + matches[0].serie.full_name
+                  }
+                  matchGame={
+                    matches.length > 1 ? matches[0].videogame.slug : ""
+                  }
+                  matchCompetition={
+                    matches.length > 1 ? matches[0].serie.slug : ""
+                  }
+                  team1={
+                    matches.length > 1
+                      ? matches[0].opponents[0].opponent.name
+                      : ""
+                  }
+                  odd1={"2.25"}
+                  oddDraw={"1.30"}
+                  team2={
+                    matches.length > 1
+                      ? matches[0].opponents[1].opponent.name
+                      : ""
+                  }
+                  odd2={"0.75"}
+                />
+                <Match
+                  matchTitle={
+                    matches[1].name + " - " + matches[1].league.name + " " + matches[1].serie.full_name
+                  }
+                  matchGame={
+                    matches.length > 1 ? matches[1].videogame.slug : ""
+                  }
+                  matchCompetition={
+                    matches.length > 1 ? matches[1].serie.slug : ""
+                  }
+                  team1={
+                    matches.length > 1
+                      ? matches[1].opponents[0].opponent.name
+                      : ""
+                  }
+                  odd1={"2.25"}
+                  oddDraw={"1.30"}
+                  team2={
+                    matches.length > 1
+                      ? matches[1].opponents[1].opponent.name
+                      : ""
+                  }
+                  odd2={"0.75"}
+                />
+              </>
+            ) : (
+              <div className="loader"></div>
+            )}
           </div>
         </div>
         <div className="right-container col"></div>
