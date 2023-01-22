@@ -3,23 +3,23 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 export default function Match(props) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   return (
     <div className="biggest-daily-match">
       <div className="biggest-daily-match-header">
         <img
-          src={`../../assets/img/competitions/banner/${props.matchCompetition}`}
+          src={`/assets/img/competitions/banner/${props.matchCompetition}.png`}
           alt=""
         />
       </div>
       <div className="biggest-daily-match-body">
         <div className="biggest-daily-match-title row">
           <img
-            src={`../../../assets/img/games/icons/${props.matchGame}`}
+            src={`/img/games/icons/${props.matchGame}.png`}
             alt=""
           />
           <img
-            src={`../../../assets/img/competitions/icons/${props.matchCompetition}`}
+            src={`/img/competitions/icons/${props.matchCompetition}.png`}
             alt=""
           />
           <p>
