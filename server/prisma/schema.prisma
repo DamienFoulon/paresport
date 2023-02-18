@@ -16,8 +16,8 @@ model User {
   email String @unique
   firstname String?
   lastname String?
-  birthdate DateTime?
-  password String?
+  birthdate DateTime? @db.Date
+  password String
   createdAt DateTime @default(now())
   coins Int @default(0)
   lastCoinsReceived DateTime?

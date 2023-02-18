@@ -1,14 +1,20 @@
 // Libs
-import express from 'express';
+import express from 'express'
 
 // Controllers
-import indexController from '../controllers/index.js';
+import {
+    index,
+    registerController,
+    onfindoCheckController,
+} from '../controllers/index.js'
 
 // Middlewares
 
 // Config
-const router = express.Router();
+const router = express.Router()
 
 // Routes
-router.get('/', indexController);
-export default router;
+router.get('/', index)
+router.post('/register', registerController)
+router.post('/onfindoCheck', onfindoCheckController)
+export default router

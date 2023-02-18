@@ -38,6 +38,14 @@ export function valorantMatches(req, res) {
                 )
             })
             break
+
+        case 'live':
+            valorantMatches.then((data) => {
+                data.map((match) => {
+                    res.json(match.id)
+                })
+            })
+            break
     }
 }
 

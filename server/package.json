@@ -11,9 +11,11 @@
   "author": "Damien Foulon",
   "license": "ISC",
   "dependencies": {
+    "@onfido/api": "^2.6.0",
     "@prisma/client": "^4.6.1",
     "api": "^5.0.5",
     "axios": "^1.2.2",
+    "bcrypt": "^5.1.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "nodemon": "^2.0.20",

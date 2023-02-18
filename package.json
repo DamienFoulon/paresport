@@ -2,6 +2,14 @@
   "name": "paresport",
   "version": "1.0.0",
   "description": "Application web de paris e-sportifs pour le projet de fin d'année de la 3WA",
+  "scripts": {
+    "start": "concurrently \"cd server && nodemon app.js\" \"cd client && npm start\""
+  },
   "author": "Damien Foulon",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "concurrently": "^7.6.0",
+    "jsonwebtoken": "^9.0.0"
+  }
 }

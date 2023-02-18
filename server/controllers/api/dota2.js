@@ -1,9 +1,12 @@
+// Utils
+import pandascore from '../../utils/pandascore.js'
+
 export function dota2(req, res) {
-    res.send('This is Dota 2 API section');
+    res.send('This is Dota 2 API section')
 }
 
 export function dota2Matches(req, res) {
-    let sort = data.query.sort
+    let sort = req.query.sort
 
     let dota2Matches = pandascore(
         `https://api.pandascore.co/dota2/matches?token=${process.env.PANDASCORE_TOKEN}`
