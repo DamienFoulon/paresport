@@ -1,0 +1,12 @@
+.error-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--colors-red-salsa);
+  color: var(--colors-white);
+  padding: 2.5em 5em;
+  margin: 1rem;
+  border-radius: 1rem;
+  width: 25%;
+}

@@ -11,14 +11,101 @@ datasource db {
 }
 
 model User {
-  id    Int @id @default(autoincrement())
-  username String @unique
-  email String @unique
-  firstname String?
-  lastname String?
-  birthdate DateTime? @db.Date
-  password String
-  createdAt DateTime @default(now())
-  coins Int @default(0)
-  lastCoinsReceived DateTime?
+  id                Int       @id @default(autoincrement())
+  username          String    @unique
+  email             String    @unique
+  firstname         String?
+  lastname          String?
+  birthdate         DateTime? @db.Date
+  password          String
+  createdAt         DateTime  @default(now())
+  coins             Int       @default(100)
+  lastCoinsReceived DateTime  @default(now())
+  verified          Boolean   @default(false)
+  Bets              Bets[]
+}
+
+model Bets {
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime? @updatedAt
+  userIdRelation User      @relation(fields: [userId], references: [id])
+  userId         Int
+  matchRelation  Matches   @relation(fields: [match], references: [id])
+  match          String
+  teamRelation   Teams     @relation(fields: [team], references: [id])
+  team           String
+  amount         Int
+  result         String    @default("pending")
+}
+
+model Leagues {
+  id      String    @id
+  name    String    @unique
+  game    String
+  slug    String    @unique
+  logo    String?
+  banner  String?
+  region  String?
+  Matches Matches[]
+}
+
+model Matches {
+  id               String   @id
+  name             String?
+  startTime        DateTime
+  game             String
+  status           String
+  leagueIdRelation Leagues? @relation(fields: [leagueId], references: [id])
+  leagueId         String?
+  tournamentName   String?
+  tournamentSeason String?
+  Bets             Bets[]
+  strategy         String?
+  team1Relation    Teams?   @relation("team1", fields: [team1], references: [id])
+  team1            String?
+  team1Score       Int?
+  team2Relation    Teams?   @relation("team2", fields: [team2], references: [id])
+  team2            String?
+  team2Score       Int?
+  winnerRelation   Teams?   @relation("winner", fields: [winner], references: [id])
+  winner           String?
+  mvpRelation      Players? @relation("mvp", fields: [mvp], references: [username])
+  mvp              String?
+}
+
+model Teams {
+  id              String    @id @unique
+  slug            String
+  name            String
+  game            String
+  logo            String?
+  playersRelation Players?  @relation("players", fields: [players], references: [username])
+  players         String?
+  records         String?
+  seasonRecords   String?
+  MatcheTeam1     Matches[] @relation(name: "team1")
+  MatcheTeam2     Matches[] @relation(name: "team2")
+  MatcheWinner    Matches[] @relation(name: "winner")
+  Players         Players[]
+  Bets            Bets[]
+}
+
+model Players {
+  id           String    @id
+  username     String    @unique
+  firstname    String?
+  lastname     String?
+  role         String?
+  game         String
+  teamRelation Teams     @relation(fields: [team], references: [id])
+  team         String
+  Teams        Teams[]   @relation(name: "players")
+  Matches      Matches[] @relation(name: "mvp")
+}
+
+model Blacklist_Tokens {
+  token         String   @unique @db.VarChar(1000)
+  remainingTime DateTime @default(now())
+  createdAt     DateTime @default(now())
 }

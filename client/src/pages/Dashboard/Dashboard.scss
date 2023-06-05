@@ -1,0 +1,68 @@
+.dashboard-container {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  height: 76vh;
+  gap: 1em;
+  padding: 2em 0 0 0;
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100%;
+    width: 25%;
+    gap: 2em;
+
+    .card {
+      height: 50%;
+    }
+  }
+
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 75%;
+    height: 100%;
+
+    .bets-card {
+      display : flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      width: 100%;
+
+      .card-title {
+        border-bottom: none;
+      }
+
+      .card-content {
+        border-top: 1px solid var(--colors-platinum);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        .card-list {
+          height: 100%;
+          width: 100%;
+
+          .MuiPaper-root {
+            height: 100%;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+}

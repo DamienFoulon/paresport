@@ -1,0 +1,46 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 141px);
+
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    background-color: var(--colors-white);
+    padding: 2.5em 5em;
+    border-radius: 20px;
+
+    .form-title {
+        color: var(--colors-eirie-black);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+
+    .no-account {
+      text-align: center;
+      color: var(--colors-eirie-black);
+      font-size: 0.75rem;
+      a {
+        position: relative;
+        display: inline-block;
+        width: fit-content;
+        color: var(--colors-red-salsa);
+        font-weight: 600;
+        text-decoration: none;
+        transition: .5s ease-in-out;
+        &:hover {
+          text-decoration: underline;
+          transition: .5s ease-in-out;
+        }
+      }
+    }
+  }
+}

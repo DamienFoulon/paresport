@@ -1,0 +1,137 @@
+.bet-board {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--colors-white);
+  border-radius: 1rem;
+
+  .bet-board-header {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--colors-red-salsa);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    color: var(--colors-white);
+
+    .bet-board-header-title {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+    }
+  }
+
+  .bet-board-body {
+    height: 80%;
+    overflow: scroll;
+    table {
+      color: var(--colors-eirie-black);
+      thead {
+        tr {
+          th {
+            font-size: .75rem;
+            font-weight: 600;
+            padding: .5em 0;
+          }
+        }
+      }
+      tbody {
+        tr {
+          position: relative;
+          &:after {
+            content: "";
+            height: 1px;
+            width: 100%;
+            background-color: var(--colors-platinum);
+            position: absolute;
+            top: 100%;
+            left: 0;
+          }
+          &:hover .line-hover {
+            opacity: 1;
+            transition: opacity .25s ease-in-out;
+            transition: font-size .3s ease-in-out;
+            font-size: 1.5rem;
+          }
+          .line-hover{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity .25s ease-in-out;
+            transition: font-size .3s ease-in-out;
+            color: var(--colors-red-salsa);
+          }
+          &:hover td {
+            opacity: 0;
+            transition: .25s ease-in-out;
+          }
+          td {
+            font-weight: 600;
+            padding: .5em 0;
+            position: relative;
+            opacity: 1;
+            transition: .25s ease-in-out;
+            &:last-child {
+              border-right: none;
+            }
+            &:after {
+              //content: "";
+              //height: 100%;
+              //width: 1px;
+              //background-color: var(--colors-platinum);
+              //position: absolute;
+              //top: 0%;
+              //left: 100%;
+            }
+
+            input {
+              border: none;
+              border-bottom: 1px solid var(--colors-platinum);
+              width: 100%;
+              &:focus {
+                outline: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bet-board-footer {
+    height: 10%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.col-match {
+  width: 60%;
+}
+
+.col-team {
+  width: 20%;
+}
+
+.col-amount {
+  width: 20%;
+}

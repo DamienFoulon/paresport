@@ -1,45 +1,57 @@
-// Utils
-import pandascore from '../../utils/pandascore.js'
+// Libs
+import dotenv from 'dotenv'
+import axios from 'axios'
+
+// Config
+dotenv.config()
 
 export function lol(req, res) {
-    res.send('This is League of Legends API section')
+    res.send('This is LoL API section')
 }
 
 export function lolMatches(req, res) {
     let sort = req.query.sort
-
-    let lolMatches = pandascore(
-        `https://api.pandascore.co/lol/matches?token=${process.env.PANDASCORE_TOKEN}`
-    )
-
+    let query
     switch (sort) {
         default:
-            lolMatches.then((data) => {
-                res.json(data)
-            })
+            query = `getSchedule?hl=fr-FR&sport=lol`
             break
-
         case 'upcoming':
-            lolMatches.then((data) => {
-                res.json(
-                    data
-                        .sort((a, b) => {
-                            return new Date(a.begin_at) - new Date(b.begin_at)
-                        })
-                        .filter((match) => {
-                            return new Date(match.begin_at) > new Date()
-                        })
-                )
-            })
+            query = `getSchedule?hl=fr-FR&sport=lol&eventState=unstarted`
+            break
+        case 'live':
+            query = `getSchedule?hl=fr-FR&sport=lol&eventState=inProgress`
+            break
+        case 'completed':
+            query = `getSchedule?hl=fr-FR&sport=lol&eventState=completed`
             break
     }
+    axios({
+        method: 'get',
+        url: `https://esports-api.service.valorantesports.com/persisted/val/${query}`,
+        headers: {
+            'x-api-key': '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z'
+        }
+    }).then(async (response) => {
+        res.json(await response.data.data.schedule.events)
+    })
 }
 
 export function lolLeagues(req, res) {
-    let lolLeagues = pandascore(
-        `https://api.pandascore.co/lol/leagues?token=${process.env.PANDASCORE_TOKEN}`
-    )
-    lolLeagues.then((data) => {
-        res.json(data)
+    let sort = req.query.sort
+    let query
+    switch (sort) {
+        default:
+            query = `getLeagues?hl=fr-FR&sport=lol`
+            break
+    }
+    axios({
+        method: 'get',
+        url: `https://esports-api.service.valorantesports.com/persisted/val/${query}`,
+        headers: {
+            'x-api-key': '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z'
+        }
+    }).then(async (response) => {
+        res.json(await response.data)
     })
 }

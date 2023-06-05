@@ -5,12 +5,12 @@ export default function Item(props) {
   return (
     <li>
       <div className="competition-game-icon">
-        <img src={`/img/games/icons/${props.gameIcon}.png`} alt="" />
+        <img src={`https://api.paresport.com/img/games/icons/${props.gameIcon}.png`} alt="" />
       </div>
       {props.competitionIcon && (
         <div className="competition-icon">
           <img
-            src={`/img/competitions/icons/${props.competitionIcon}.png`}
+            src={`https://api.paresport.com/img/competitions/icons/${props.gameIcon}/${props.competitionIcon}.png`}
             alt=""
           />
         </div>

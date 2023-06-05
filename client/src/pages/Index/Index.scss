@@ -1,22 +1,59 @@
 .left-container {
+  height: 100%;
   display: flex;
   width: 20%;
   padding: 0 1rem;
+
+  .searchBar {
+    height: 5%;
+  }
+
+  .competitions-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 70%;
+    .competitions-list {
+        overflow-y: scroll;
+        max-height: 85%;
+    }
+  }
+
+  .games-list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    height: 25%;
+    .games-list {
+      overflow-y: scroll;
+      max-height: 85%;
+    }
+  }
 }
 
 .mid-container {
+  height: 100%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
   width: 60%;
   padding: 0 .5rem;
+
+  .banner {
+    height: 40%;
+  }
+
   .biggest-daily-matchs {
-    margin-top: 1rem;
     width: 100%;
-    height: 18rem;
+    height: 55%;
     justify-content: space-between;
   }
 }
 
 .right-container {
+  height: 100%;
   display: flex;
   width: 20%;
   padding: 0 1rem;

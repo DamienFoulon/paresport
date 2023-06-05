@@ -1,0 +1,25 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 2em;
+
+  .button-submit {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--colors-white);
+    background: var(--colors-red-salsa);
+    border: 2px solid var(--colors-red-salsa);
+    border-radius: 5px;
+    padding: .45rem .90rem;
+    width: 100%;
+    transition: .25s ease-in-out;
+    &:hover {
+      background: transparent;
+      color: var(--colors-red-salsa);
+      transition: .25s ease-in-out;
+    }
+  }
+}

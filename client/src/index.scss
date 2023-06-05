@@ -8,6 +8,7 @@
 * {
   --colors-eirie-black: #201D1A;
   --colors-red-salsa: #D2161E;
+  --colors-red-valorant: #ea555a;
   --colors-light-red-salsa: #FF4152;
   --colors-dark-red-salsa: #a1242b;
   --colors-yellow: #FFCC00;
@@ -17,7 +18,9 @@
   --colors-platinum: #E2E2E2;
   --colors-white: #FFFFFF;
   --colors-light-background: #EEF0F3;
-  --colors-light-grey: #9AA1AF;
+  --colors-dark-background: #0f1921;
+  --colors-light-grey: #797d85;
+  --colors-grey: #797D85FF;
 }
 
 body {
@@ -28,6 +31,13 @@ body {
   background-color: var(--colors-light-background);
   font-size: .6rem;
   line-height: 1.5;
+  height: 100vh;
+
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Roboto', sans-serif;
@@ -36,9 +46,26 @@ body {
     margin-bottom: 0.1rem;
   }
 
+  .red-button {
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--colors-white);
+    background: var(--colors-red-salsa);
+    border: 2px solid var(--colors-red-salsa);
+    border-radius: 5px;
+    padding: .45rem .90rem;
+    width: 100%;
+    transition: .25s ease-in-out;
+    &:hover {
+      background: transparent;
+      color: var(--colors-red-salsa);
+      transition: .25s ease-in-out;
+    }
+  }
+
   .container {
-    margin-top: 1rem;
-    padding: 0 1%;
+    margin: 1rem 0;
+    height: calc(80% - 2rem);
   }
 
   .col {

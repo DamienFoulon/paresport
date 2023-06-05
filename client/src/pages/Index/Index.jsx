@@ -1,5 +1,5 @@
 import './Index.scss'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import Navbar from '../../components/Navbar/Navbar'
@@ -8,21 +8,33 @@ import List from '../../components/List/List'
 import Item from '../../components/List/Item/Item'
 import Banner from '../../components/Banner/Banner'
 import Match from '../../components/Match/Match'
+import BetBoard from '../../components/BetBoard/BetBoard'
+import { useRecoilValue, useRecoilState } from 'recoil'
+import { userAtom } from '../../atoms/atoms'
+import { betsAtom } from '../../atoms/atoms'
 
 export default function Index() {
-    const { i18n } = useTranslation()
+    const user = useRecoilValue(userAtom)
+    const { t, i18n } = useTranslation()
     const urlLang = window.location.pathname.split('/')[1]
+    let lang = `${urlLang.toLowerCase()}/${urlLang.toUpperCase()}`
     if (urlLang !== i18n.language) {
         i18n.changeLanguage(urlLang)
     }
 
-    const [matches, setMatches] = React.useState([{}])
+    const [matches, setMatches] = useState([{}])
 
-    React.useEffect(() => {
-        fetch('/api/valorant/matches?sort=upcoming')
+    useEffect(() => {
+        fetch('https://api.paresport.com/api/valorant/matches?sort=upcoming')
             .then((response) => response.json())
             .then((data) => setMatches(data))
     }, [])
+
+    const [betList, setBetList] = useRecoilState(betsAtom)
+    // Log betList every time it changes
+    useEffect(() => {
+        console.log(betList)
+    }, [betList])
 
     return (
         <>
@@ -33,7 +45,7 @@ export default function Index() {
                         placeholder={'Search a match'}
                         icon={'icon-magnifying-glass-solid'}
                     />
-                    <List title={'Top competitions'}>
+                    <List className='competitions-list' title={'Top competitions'}>
                         <Item
                             gameIcon={'league-of-legends'}
                             competitionIcon={'lol-lec'}
@@ -45,12 +57,12 @@ export default function Index() {
                             competitionName={'League of Legend LCS'}
                         />
                         <Item
-                            gameIcon={'csgo'}
+                            gameIcon={'cs-go'}
                             competitionIcon={'csgo-esl'}
                             competitionName={'CS:GO ESL'}
                         />
                         <Item
-                            gameIcon={'csgo'}
+                            gameIcon={'cs-go'}
                             competitionIcon={'csgo-esea'}
                             competitionName={'CS:GO ESEA'}
                         />
@@ -61,16 +73,23 @@ export default function Index() {
                         />
                         <Item
                             gameIcon={'valorant'}
-                            competitionIcon={'valorant-cdf'}
-                            competitionName={'Valorant Coupe de France'}
+                            competitionIcon={'vct_emea'}
+                            competitionName={'Valorant VCT EMEA'}
                         />
                     </List>
-                    <List title={'Games'}>
+                    <List className='games-list' title={'Games'}>
                         <Item
                             gameIcon={'valorant'}
                             competitionName={'Valorant'}
                         />
-                        <Item gameIcon={'csgo'} competitionName={'CS:GO'} />
+                        <Item
+                            gameIcon={'cs-go'}
+                            competitionName={'CS:GO'}
+                        />
+                        <Item
+                            gameIcon={'league-of-legends'}
+                            competitionName={'League of Legends'}
+                        />
                     </List>
                 </div>
                 <div className="mid-container col">
@@ -82,102 +101,54 @@ export default function Index() {
                         {matches.length > 1 ? (
                             <>
                                 <Match
+                                    startTime={
+                                        matches[0].startTime ? matches[0].startTime : 'TBD'
+                                    }
+                                    matchId={
+                                        matches[0].id ? matches[0].id : 'TBD'
+                                    }
                                     matchTitle={
-                                        matches[0].name +
-                                        ' - ' +
-                                        matches[0].league.name +
-                                        ' ' +
-                                        matches[0].serie.full_name
+                                        matches[0].name ? matches[0].name : 'TBD'
                                     }
                                     matchGame={
-                                        matches.length > 1
-                                            ? matches[0].videogame.slug
-                                            : ''
+                                        matches[0].game ? matches[0].game : 'TBD'
                                     }
                                     matchCompetition={
-                                        matches.length > 1
-                                            ? matches[0].serie.slug
-                                            : ''
+                                        matches[0].league ? matches[0].league : 'TBD'
                                     }
                                     team1={
-                                        matches.length > 1
-                                            ? matches[0].opponents[0]
-                                                ? matches[0].opponents[0]
-                                                      .opponent.name.length > 13
-                                                    ? matches[0].opponents[0].opponent.name.slice(
-                                                          0,
-                                                          13
-                                                      ) + '...'
-                                                    : matches[0].opponents[0]
-                                                          .opponent.name
-                                                : 'TBD'
-                                            : ''
+                                        matches[0].team1 ? matches[0].team1 : 'TBD'
                                     }
                                     odd1={'2.25'}
                                     oddDraw={'1.30'}
                                     team2={
-                                        matches.length > 1
-                                            ? matches[0].opponents[1]
-                                                ? matches[0].opponents[1]
-                                                      .opponent.name.length > 13
-                                                    ? matches[0].opponents[1].opponent.name.slice(
-                                                          0,
-                                                          13
-                                                      ) + '...'
-                                                    : matches[0].opponents[1]
-                                                          .opponent.name
-                                                : 'TBD'
-                                            : ''
+                                        matches[0].team2 ? matches[0].team2 : 'TBD'
                                     }
                                     odd2={'0.75'}
                                 />
                                 <Match
+                                    startTime={
+                                        matches[1].startTime ? matches[1].startTime : 'TBD'
+                                    }
+                                    matchId={
+                                        matches[1].id ? matches[1].id : 'TBD'
+                                    }
                                     matchTitle={
-                                        matches[1].name +
-                                        ' - ' +
-                                        matches[1].league.name +
-                                        ' ' +
-                                        matches[1].serie.full_name
+                                        matches[1].name ? matches[1].name : 'TBD'
                                     }
                                     matchGame={
-                                        matches.length > 1
-                                            ? matches[1].videogame.slug
-                                            : ''
+                                        matches[1].game ? matches[1].game : 'TBD'
                                     }
                                     matchCompetition={
-                                        matches.length > 1
-                                            ? matches[1].serie.slug
-                                            : ''
+                                        matches[1].league ? matches[1].league : 'TBD'
                                     }
                                     team1={
-                                        matches.length > 1
-                                            ? matches[1].opponents[0].opponent
-                                                ? matches[1].opponents[0]
-                                                      .opponent.name.length > 13
-                                                    ? matches[1].opponents[0].opponent.name.slice(
-                                                          0,
-                                                          13
-                                                      ) + '...'
-                                                    : matches[1].opponents[0]
-                                                          .opponent.name
-                                                : 'TBD'
-                                            : ''
+                                        matches[1].team1 ? matches[1].team1 : 'TBD'
                                     }
                                     odd1={'2.25'}
                                     oddDraw={'1.30'}
                                     team2={
-                                        matches.length > 1
-                                            ? matches[1].opponents[1]
-                                                ? matches[1].opponents[1]
-                                                      .opponent.name.length > 13
-                                                    ? matches[1].opponents[1].opponent.name.slice(
-                                                          0,
-                                                          13
-                                                      ) + '...'
-                                                    : matches[1].opponents[1]
-                                                          .opponent.name
-                                                : 'TBD'
-                                            : ''
+                                        matches[1].team2 ? matches[1].team2 : 'TBD'
                                     }
                                     odd2={'0.75'}
                                 />
@@ -187,7 +158,9 @@ export default function Index() {
                         )}
                     </div>
                 </div>
-                <div className="right-container col"></div>
+                <div className="right-container col">
+                    <BetBoard bets={betList} />
+                </div>
             </div>
         </>
     )
