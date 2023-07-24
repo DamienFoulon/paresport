@@ -5,9 +5,12 @@ form {
   align-items: center;
   width: 100%;
   gap: 2em;
+  font-size: .75em;
+  @media screen and (max-width: 768px) {
+    font-size: 1.75em;
+  }
 
   .button-submit {
-    font-size: .75rem;
     font-weight: 600;
     color: var(--colors-white);
     background: var(--colors-red-salsa);
@@ -16,6 +19,10 @@ form {
     padding: .45rem .90rem;
     width: 100%;
     transition: .25s ease-in-out;
+    font-size: 1em;
+    @media screen and (max-width: 768px) {
+      font-size: 1.75em;
+    }
     &:hover {
       background: transparent;
       color: var(--colors-red-salsa);

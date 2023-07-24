@@ -10,6 +10,11 @@
         justify-content: center;
         align-items: center;
         width: 25%;
+        font-size: 1vw;
+
+        @media screen and (max-width: 768px) {
+            width: calc(90% - 10em);
+        }
 
         .form-title {
             color: var(--colors-eirie-black);
