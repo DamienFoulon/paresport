@@ -4,6 +4,10 @@
   background-color: var(--colors-white);
   border-radius: 1rem;
   font-size: 1rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+
   .biggest-daily-match-header {
     position: relative;
     background-size: cover;

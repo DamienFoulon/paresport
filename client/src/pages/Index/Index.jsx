@@ -97,7 +97,7 @@ export default function Index() {
                         title={'Get free coins'}
                         description={'You can claim free coins every days !'}
                     />
-                    <div className="biggest-daily-matchs row">
+                    <div className="biggest-daily-matchs">
                         {matches.length > 1 ? (
                             <>
                                 <Match
