@@ -1,10 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import { RecoilRoot, useSetRecoilState, useRecoilValue } from 'recoil'
-import { userAtom, isAuthenticatedAtom } from '../atoms/atoms'
+import { RecoilRoot } from 'recoil'
 import { history } from '../helpers/history'
-import Cookies from 'js-cookie'
-import isLogin from '../utils/isLogin'
 
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute'
 import Index from '../pages/Index/Index'
