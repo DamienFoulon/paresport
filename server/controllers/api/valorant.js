@@ -77,8 +77,19 @@ export async function valorantMatches(req, res) {
                         status: match.state,
                         leagueId: await prisma.leagues.findMany({
                             where: { slug: match.league.slug, game: 'valorant' }
-                        }).then((league) => {
-                            return league[0].id
+                        }).then(async(league) => {
+                            if(league) {
+                                return league[0].id
+                            } else {
+                                await prisma.leagues.create({
+                                    data: {
+                                        id: match.league.id,
+                                        name: match.league.name,
+                                        slug: match.league.slug,
+                                        game: 'valorant'
+                                    }
+                                })
+                            }
                         }),
                         tournamentName: match.tournament ? match.tournament.split.name : 'TBD',
                         tournamentSeason: match.tournament ? match.tournament.season.name : 'TBD',
