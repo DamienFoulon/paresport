@@ -64,8 +64,14 @@ body {
   }
 
   .container {
-    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0;
     height: calc(80% - 2rem);
+    @media screen and (max-width: 768px) {
+      height: 100%;
+    }
   }
 
   .col {
@@ -93,9 +99,5 @@ body {
 
   .cg-blue {
     color: var(--colors-cg-blue);
-  }
-
-  .container {
-    display: flex;
   }
 }
