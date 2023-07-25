@@ -8,6 +8,15 @@
   gap: 1em;
   padding: 2em 0 0 0;
 
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 0;
+    gap: 2em;
+  }
+
   .left-container {
     display: flex;
     flex-direction: column;
@@ -16,9 +25,19 @@
     height: 100%;
     width: 25%;
     gap: 2em;
+    padding: 0 1em;
+
+    @media screen and (max-width: 768px) {
+      display: flex !important;
+      width: calc(90% - 2em);
+    }
 
     .card {
       height: 50%;
+
+      @media screen and (max-width: 768px) {
+        width: 100%;
+      }
     }
   }
 
@@ -29,6 +48,12 @@
     justify-content: flex-start;
     width: 75%;
     height: 100%;
+    padding: 0 1em;
+
+    @media screen and (max-width: 768px) {
+      display: flex !important;
+      width: calc(90% - 2em);
+    }
 
     .bets-card {
       display : flex;
