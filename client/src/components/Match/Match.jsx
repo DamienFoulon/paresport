@@ -18,8 +18,8 @@ export default function Match(props) {
             slug: e.currentTarget.dataset.teamSlug,
         };
         const match = {
-            id: e.currentTarget.parentNode.parentNode.parentNode.dataset.matchId,
-            name: e.currentTarget.parentNode.parentNode.parentNode.dataset.matchName,
+            id: e.currentTarget.parentNode.parentNode.dataset.matchId,
+            name: e.currentTarget.parentNode.parentNode.dataset.matchName,
         };
 
         const bet = {
@@ -39,34 +39,35 @@ export default function Match(props) {
     return (
         <div className='match' data-match-id={props.matchId} data-match-name={props.matchTitle}>
             <div className='team1'>
-                <img src={props.team1.logo} alt={'logo ' + props.team1.name} />
-                <p>{props.team1.slug}</p>
-                <button className="bet-match-button team1" data-team-id={props.team1.id} data-team-slug={props.team1.slug} onClick={addBet}>
-                    <p className="bet-match-button-teamName">
-                        {props.team1.slug}
-                    </p>
-                    <p className="bet-match-button-odds">
-                        {props.odd1}
-                    </p>
-                </button>
+                <div className='team-info'>
+                    <div className='match-team-logo'>
+                        <img src={props.team1.image.replace('http://', 'https://')} alt={'logo ' + props.team1.name} title={props.team1.name} />
+                    </div>
+                    <p>{props.team1.slug}</p>
+                </div>
+                <div className='bet-part'>
+                    <button className="bet-match-button team1" data-team-id={props.team1.id} data-team-slug={props.team1.slug} onClick={addBet}>
+                        <p className="bet-match-button-odds">
+                            {props.odd1}
+                        </p>
+                    </button>
+                </div>
             </div>
             <div className='draw'>
                 <button className="bet-match-button draw" data-team-id={"DRAW"} data-team-slug={'DRAW'} onClick={addBet}>
-                    <p className="bet-match-button-teamName">
-                        {t('Draw')}
-                    </p>
                     <p className="bet-match-button-odds">
                         {props.oddDraw}
                     </p>
                 </button>
             </div>
             <div className='team2'>
-                <img src={props.team2.logo} alt={'logo ' + props.team2.name} />
-                <p>{props.team2.slug}</p>
+                <div className='team-info'>
+                    <div className='match-team-logo'>
+                        <img src={props.team2.image.replace('http://', 'https://')} alt={'logo ' + props.team2.name} title={props.team2.name} />
+                    </div>
+                    <p>{props.team2.slug}</p>
+                </div>
                 <button className="bet-match-button team1" data-team-id={props.team2.id} data-team-slug={props.team2.slug} onClick={addBet}>
-                    <p className="bet-match-button-teamName">
-                        {props.team2.slug}
-                    </p>
                     <p className="bet-match-button-odds">
                         {props.odd2}
                     </p>

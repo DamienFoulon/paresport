@@ -8,6 +8,7 @@ import List from '../../components/List/List'
 import Item from '../../components/List/Item/Item'
 import Banner from '../../components/Banner/Banner'
 import BigMatch from '../../components/BigMatch/BigMatch'
+import Match from '../../components/Match/Match'
 import BetBoard from '../../components/BetBoard/BetBoard'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { userAtom } from '../../atoms/atoms'
@@ -118,12 +119,12 @@ export default function Index() {
                                             matches[0].league ? matches[0].league : 'TBD'
                                         }
                                         team1={
-                                            matches[0].team1 ? matches[0].team1.id : 'TBD'
+                                            matches[0].team1 ? matches[0].team1 : 'TBD'
                                         }
                                         odd1={'2.25'}
                                         oddDraw={'1.30'}
                                         team2={
-                                            matches[0].team2 ? matches[0].team2.id : 'TBD'
+                                            matches[0].team2 ? matches[0].team2 : 'TBD'
                                         }
                                         odd2={'0.75'}
                                     />
@@ -158,15 +159,16 @@ export default function Index() {
                                 <div className="loader"></div>
                             )}
                         </div>
-                        <div className='upcoming-matchs'>
+                        <div className='upcoming-matches'>
                             {matches.length > 1 ? (
                                 matches.map((match, index) => {
-                                    if (index >= 2) {
-                                        return (
-                                            <BigMatch
-                                                startTime={
-                                                    match.startTime ? match.startTime : 'TBD'
-                                                }
+                                    if (
+                                        index > 1 &&
+                                        (match.team1 && match.team1.slug !== 'TBD') &&
+                                        (match.team2 && match.team2.slug !== 'TBD')
+                                    ) {
+                                        return(
+                                            <Match
                                                 matchId={
                                                     match.id ? match.id : 'TBD'
                                                 }
@@ -192,9 +194,7 @@ export default function Index() {
                                         )
                                     }
                                 })
-                            ) : (
-                                <div className="loader"></div>
-                            )}
+                            ) : (<div className='loader'></div>)}
                         </div>
                     </div>
                 </div>
