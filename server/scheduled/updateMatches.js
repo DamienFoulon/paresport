@@ -6,7 +6,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export async function scheduledUpdateMatches() {
-    let task = cron.schedule("0 0 * */1 * * *", async function () {
+    let task = cron.schedule("*/30 * * * *", async function () {
         console.log('\x1b[33m Updating matches... \x1b[0m')
         let query = 'getSchedule?hl=fr-FR&sport=val'
         axios({
