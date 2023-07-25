@@ -3,7 +3,13 @@ import express from 'express';
 
 // Controllers
 import { global, globalMatches, globalLeagues } from '../controllers/api/global.js';
-import { valorant, valorantMatches, valorantLeagues, valorantTeams } from '../controllers/api/valorant.js'
+import {
+    valorant,
+    valorantMatches,
+    valorantLeagues,
+    valorantTeams,
+    valorantRawMatches,
+} from '../controllers/api/valorant.js'
 import { lol, lolMatches, lolLeagues } from '../controllers/api/lol.js';
 import { dota2, dota2Matches, dota2Leagues } from "../controllers/api/dota2.js";
 import { csgo, csgoMatches, csgoLeagues } from "../controllers/api/csgo.js";
@@ -37,6 +43,7 @@ router.get('/valorant', valorant);
 router.get('/valorant/matches', valorantMatches);
 router.get('/valorant/leagues', valorantLeagues);
 router.get('/valorant/teams', valorantTeams);
+router.get('/valorant/raw', valorantRawMatches);
 
 // League of Legends
 router.get('/lol', lol);
