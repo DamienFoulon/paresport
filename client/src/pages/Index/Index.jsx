@@ -7,7 +7,7 @@ import Searchbar from '../../components/Searchbar/Searchbar'
 import List from '../../components/List/List'
 import Item from '../../components/List/Item/Item'
 import Banner from '../../components/Banner/Banner'
-import Match from '../../components/Match/Match'
+import BigMatch from '../../components/BigMatch/BigMatch'
 import BetBoard from '../../components/BetBoard/BetBoard'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { userAtom } from '../../atoms/atoms'
@@ -97,65 +97,105 @@ export default function Index() {
                         title={'Get free coins'}
                         description={'You can claim free coins every days !'}
                     />
-                    <div className="biggest-daily-matchs">
-                        {matches.length > 1 ? (
-                            <>
-                                <Match
-                                    startTime={
-                                        matches[0].startTime ? matches[0].startTime : 'TBD'
+                    <div className='matchs-container'>
+                        <div className="biggest-daily-matchs">
+                            {matches.length > 1 ? (
+                                <>
+                                    <BigMatch
+                                        startTime={
+                                            matches[0].startTime ? matches[0].startTime : 'TBD'
+                                        }
+                                        matchId={
+                                            matches[0].id ? matches[0].id : 'TBD'
+                                        }
+                                        matchTitle={
+                                            matches[0].name ? matches[0].name : 'TBD'
+                                        }
+                                        matchGame={
+                                            matches[0].game ? matches[0].game : 'TBD'
+                                        }
+                                        matchCompetition={
+                                            matches[0].league ? matches[0].league : 'TBD'
+                                        }
+                                        team1={
+                                            matches[0].team1 ? matches[0].team1.id : 'TBD'
+                                        }
+                                        odd1={'2.25'}
+                                        oddDraw={'1.30'}
+                                        team2={
+                                            matches[0].team2 ? matches[0].team2.id : 'TBD'
+                                        }
+                                        odd2={'0.75'}
+                                    />
+                                    <BigMatch
+                                        startTime={
+                                            matches[1].startTime ? matches[1].startTime : 'TBD'
+                                        }
+                                        matchId={
+                                            matches[1].id ? matches[1].id : 'TBD'
+                                        }
+                                        matchTitle={
+                                            matches[1].name ? matches[1].name : 'TBD'
+                                        }
+                                        matchGame={
+                                            matches[1].game ? matches[1].game : 'TBD'
+                                        }
+                                        matchCompetition={
+                                            matches[1].league ? matches[1].league : 'TBD'
+                                        }
+                                        team1={
+                                            matches[1].team1 ? matches[1].team1.id : 'TBD'
+                                        }
+                                        odd1={'2.25'}
+                                        oddDraw={'1.30'}
+                                        team2={
+                                            matches[1].team2 ? matches[1].team2.id : 'TBD'
+                                        }
+                                        odd2={'0.75'}
+                                    />
+                                </>
+                            ) : (
+                                <div className="loader"></div>
+                            )}
+                        </div>
+                        <div className='upcoming-matchs'>
+                            {matches.length > 1 ? (
+                                matches.map((match, index) => {
+                                    if (index >= 2) {
+                                        return (
+                                            <BigMatch
+                                                startTime={
+                                                    match.startTime ? match.startTime : 'TBD'
+                                                }
+                                                matchId={
+                                                    match.id ? match.id : 'TBD'
+                                                }
+                                                matchTitle={
+                                                    match.name ? match.name : 'TBD'
+                                                }
+                                                matchGame={
+                                                    match.game ? match.game : 'TBD'
+                                                }
+                                                matchCompetition={
+                                                    match.league ? match.league : 'TBD'
+                                                }
+                                                team1={
+                                                    match.team1 ? match.team1 : 'TBD'
+                                                }
+                                                odd1={'2.25'}
+                                                oddDraw={'1.30'}
+                                                team2={
+                                                    match.team2 ? match.team2 : 'TBD'
+                                                }
+                                                odd2={'0.75'}
+                                            />
+                                        )
                                     }
-                                    matchId={
-                                        matches[0].id ? matches[0].id : 'TBD'
-                                    }
-                                    matchTitle={
-                                        matches[0].name ? matches[0].name : 'TBD'
-                                    }
-                                    matchGame={
-                                        matches[0].game ? matches[0].game : 'TBD'
-                                    }
-                                    matchCompetition={
-                                        matches[0].league ? matches[0].league : 'TBD'
-                                    }
-                                    team1={
-                                        matches[0].team1 ? matches[0].team1 : 'TBD'
-                                    }
-                                    odd1={'2.25'}
-                                    oddDraw={'1.30'}
-                                    team2={
-                                        matches[0].team2 ? matches[0].team2 : 'TBD'
-                                    }
-                                    odd2={'0.75'}
-                                />
-                                <Match
-                                    startTime={
-                                        matches[1].startTime ? matches[1].startTime : 'TBD'
-                                    }
-                                    matchId={
-                                        matches[1].id ? matches[1].id : 'TBD'
-                                    }
-                                    matchTitle={
-                                        matches[1].name ? matches[1].name : 'TBD'
-                                    }
-                                    matchGame={
-                                        matches[1].game ? matches[1].game : 'TBD'
-                                    }
-                                    matchCompetition={
-                                        matches[1].league ? matches[1].league : 'TBD'
-                                    }
-                                    team1={
-                                        matches[1].team1 ? matches[1].team1 : 'TBD'
-                                    }
-                                    odd1={'2.25'}
-                                    oddDraw={'1.30'}
-                                    team2={
-                                        matches[1].team2 ? matches[1].team2 : 'TBD'
-                                    }
-                                    odd2={'0.75'}
-                                />
-                            </>
-                        ) : (
-                            <div className="loader"></div>
-                        )}
+                                })
+                            ) : (
+                                <div className="loader"></div>
+                            )}
+                        </div>
                     </div>
                 </div>
                 <div className="right-container col">

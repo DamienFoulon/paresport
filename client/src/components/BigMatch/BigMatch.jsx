@@ -1,10 +1,10 @@
-import './Match.scss'
+import './BigMatch.scss'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { useRecoilState } from 'recoil'
 import { betsAtom } from '../../atoms/atoms'
 
-export default function Match(props) {
+export default function BigMatch(props) {
     const urlLang = window.location.pathname.split('/')[1]
     let lang = urlLang ? `${urlLang.toLowerCase()}-${urlLang.toUpperCase()}` : null
     let startTime = new Date(props.startTime)
