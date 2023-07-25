@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 export async function scheduledRemoveBlacklistTokens() {
-    cron.schedule('*/30 * * * *', async () => {
+    cron.schedule('*/25 * * * *', async () => {
         const tokens = await prisma.blacklist_Tokens.findMany().then((tokens) => {
             tokens.forEach(async (token) => {
                 if(token.remainingTime < new Date()) {
