@@ -108,23 +108,13 @@ export async function valorantMatches(req, res) {
                         team1: await prisma.teams.findMany({
                             where: match.match ? { slug: match.match.teams[0].code, game: 'valorant' } : { slug: 'TBD', game: 'valorant' }
                         }).then((team) => {
-                            return {
-                                id: team[0] ? team[0].id : 'TBD',
-                                name: team[0] ? team[0].name : 'TBD',
-                                slug: team[0] ? team[0].slug : 'TBD',
-                                logo: team[0] ? team[0].logo : 'TBD',
-                            };
+                            return team[0] ? team[0].id : 'TBD'
                         }),
                         team1Score: match.match ? match.match.teams ? match.match.teams[0].result ? match.match.teams[0].result.gameWins : 0 : 0 : 0,
                         team2: await prisma.teams.findMany({
                             where: match.match ? { slug: match.match.teams[1].code, game: 'valorant' } : { slug: 'TBD', game: 'valorant' }
                         }).then((team) => {
-                            return {
-                                id: team[0] ? team[0].id : 'TBD',
-                                name: team[0] ? team[0].name : 'TBD',
-                                slug: team[0] ? team[0].slug : 'TBD',
-                                logo: team[0] ? team[0].logo : 'TBD',
-                            }
+                            return team[0] ? team[0].id : 'TBD'
                         }),
                         team2Score: match.match ? match.match.teams ? match.match.teams[1].result ? match.match.teams[1].result.gameWins : 0 : 0 : 0,
                         winner: winner,
