@@ -11,6 +11,17 @@ export function valorant(req, res) {
     res.send('This is Valorant API section')
 }
 
+export async function valorantRawMatches(req, res) {
+    axios({
+        method: 'get',
+        url: `https://esports-api.service.valorantesports.com/persisted/val/getSchedule?hl=fr-FR&sport=val`,
+        headers: {
+            'x-api-key': '0TvQnueqKa5mxJntVWt0w4LpLfEkrV1Ta8rQBb9Z'
+        }
+    }).then((response) => {
+        res.json(response.data)
+    })
+}
 
 export async function valorantMatches(req, res) {
     let sort = req.query.sort
@@ -97,13 +108,23 @@ export async function valorantMatches(req, res) {
                         team1: await prisma.teams.findMany({
                             where: match.match ? { slug: match.match.teams[0].code, game: 'valorant' } : { slug: 'TBD', game: 'valorant' }
                         }).then((team) => {
-                            return team[0] ? team[0].id : 'TBD'
+                            return {
+                                id: team[0] ? team[0].id : 'TBD',
+                                name: team[0] ? team[0].name : 'TBD',
+                                slug: team[0] ? team[0].slug : 'TBD',
+                                logo: team[0] ? team[0].logo : 'TBD',
+                            };
                         }),
                         team1Score: match.match ? match.match.teams ? match.match.teams[0].result ? match.match.teams[0].result.gameWins : 0 : 0 : 0,
                         team2: await prisma.teams.findMany({
                             where: match.match ? { slug: match.match.teams[1].code, game: 'valorant' } : { slug: 'TBD', game: 'valorant' }
                         }).then((team) => {
-                            return team[0] ? team[0].id : 'TBD'
+                            return {
+                                id: team[0] ? team[0].id : 'TBD',
+                                name: team[0] ? team[0].name : 'TBD',
+                                slug: team[0] ? team[0].slug : 'TBD',
+                                logo: team[0] ? team[0].logo : 'TBD',
+                            }
                         }),
                         team2Score: match.match ? match.match.teams ? match.match.teams[1].result ? match.match.teams[1].result.gameWins : 0 : 0 : 0,
                         winner: winner,
