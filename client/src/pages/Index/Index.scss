@@ -48,7 +48,7 @@
   @media screen and (max-width: 768px) {
     width: calc(100% - 4em);
     justify-content: flex-start;
-    gap: 1em;
+    gap: 5vw;
   }
 
   .banner {
@@ -61,7 +61,7 @@
   }
 
   .matchs-container {
-    height: 55%;
+    height: 80%;
     overflow-y: scroll;
     width: 100%;
     display: flex;
@@ -82,7 +82,7 @@
         width: 100%;
         flex-direction: column;
         justify-content: flex-start;
-        height: 80%;
+        height: unset;
         gap: 1em;
       }
     }

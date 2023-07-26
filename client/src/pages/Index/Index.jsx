@@ -145,12 +145,12 @@ export default function Index() {
                                             matches[1].league ? matches[1].league : 'TBD'
                                         }
                                         team1={
-                                            matches[1].team1 ? matches[1].team1.id : 'TBD'
+                                            matches[1].team1 ? matches[1].team1 : 'TBD'
                                         }
                                         odd1={'2.25'}
                                         oddDraw={'1.30'}
                                         team2={
-                                            matches[1].team2 ? matches[1].team2.id : 'TBD'
+                                            matches[1].team2 ? matches[1].team2 : 'TBD'
                                         }
                                         odd2={'0.75'}
                                     />
