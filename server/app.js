@@ -14,10 +14,11 @@ import apiRouter from './routes/api.js'
 // Config
 const app = express()
 const prisma = new PrismaClient()
-const port = process.env.APP_PORT || 8000
+const port = process.env.APP_PORT || 8100
 const secretKey = process.env.JWT_SECRET
 app.use(cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://paresport.com',
+    credentials: true
 }))
 app.use(bodyParser.json())
 app.use(cookieParser())
