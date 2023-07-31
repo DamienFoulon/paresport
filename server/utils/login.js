@@ -26,16 +26,29 @@ export async function loginUser(req, res, userData) {
                     signature: user.email,
                     expiration: expirationTime,
                 }, secretKey)
-                res.cookie('userToken', token)
-                res.cookie('userEmail', user.email)
-                res.send(token)
+                res.cookie('userToken', token, {
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'none',
+                    expires: expirationTime
+                })
+                res.cookie('userEmail', user.email, {
+                    httpOnly: true,
+                    secure: true,
+                    sameSite: 'none',
+                    expires: expirationTime
+                })
+                res.json({
+                    token: token,
+                    email: user.email,
+                })
             } else {
-                res.send('User not verified')
+                res.status(200).json({ message: 'User not verified'})
             }
         } else {
-            res.send('Incorrect password')
+            res.status(200).json({ message: 'Incorrect password'})
         }
     } else {
-        res.send('User not found')
+        res.status(200).json({ message: 'User not found'})
     }
 }
