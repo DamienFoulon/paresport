@@ -6,11 +6,11 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const transporter = NodeMailer.createTransport({
-    host: "nems.o2switch.net",
+    host: "smtp-paresport.alwaysdata.net",
     port: 465,
     secure: true,
     auth: {
-        user: "damien@vdpv1530.odns.fr",
+        user: "no-reply@paresport.com",
         pass: process.env.MAIL_PASSWORD
     }
 })
@@ -29,11 +29,11 @@ export async function sendMail(sender, receiver, subject, text, html) {
 
 export async function sendMailValidation(token, receiver) {
     let mail = await transporter.sendMail({
-        from: `Paresport <damien@vdpv1530.odns.fr>`,
+        from: `Paresport <no-reply@paresport.com>`,
         to: receiver,
         subject: "Mail validation",
-        text: `Please click on the following link to validate your email address: http://localhost:3000/validate?token=${token}`,
-        html: `<p>Please click on the following link to validate your email address: <a href="http://localhost:3000/validate?token=${token}">http://localhost:3000/validate?token=${token}</a></p>`
+        text: `Please click on the following link to validate your email address: https://paresport.com/validate?token=${token}`,
+        html: `<p>Please click on the following link to validate your email address: <a href="https://paresport.com/validate?token=${token}">https://paresport.com/validate?token=${token}</a></p>`
     })
 
     return mail
