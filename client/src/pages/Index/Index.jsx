@@ -32,11 +32,6 @@ export default function Index() {
     }, [])
 
     const [betList, setBetList] = useRecoilState(betsAtom)
-    // Log betList every time it changes
-    useEffect(() => {
-        console.log(betList)
-    }, [betList])
-
     return (
         <>
             <Navbar />

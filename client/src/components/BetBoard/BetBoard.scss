@@ -33,9 +33,11 @@
 
   .bet-board-body {
     height: 80%;
+    width: 100%;
     overflow: scroll;
     table {
       color: var(--colors-eirie-black);
+      width: 100%;
       thead {
         tr {
           th {
@@ -46,6 +48,35 @@
         }
       }
       tbody {
+        position: relative;
+
+        .success-message, .error-message {
+          align-items: center;
+          display: flex;
+          font-size: 1rem;
+          font-weight: 600;
+          justify-content: center;
+          left: 50%;
+          opacity: 1;
+          position: absolute;
+          top: 100%;
+          transition: opacity .25s ease-in-out;
+          width: 90%;
+          text-align: center;
+          margin-top: 1em;
+          background: var(--colors-red-salsa);
+          color: white;
+          padding: .5em 0;
+          border-radius: 1em;
+          transform: translate(-50%);
+            &.success-message {
+              background: var(--colors-green);
+            }
+            &.error-message {
+              background: var(--colors-red-salsa);
+            }
+        }
+
         tr {
           position: relative;
           &:after {
@@ -57,30 +88,31 @@
             top: 100%;
             left: 0;
           }
-          &:hover .line-hover {
-            opacity: 1;
-            transition: opacity .25s ease-in-out;
-            transition: font-size .3s ease-in-out;
-            font-size: 1.5rem;
+
+          .col-match, .col-team {
+            .line-hover{
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              height: 100%;
+              width: 100%;
+              position: absolute;
+              top: 0;
+              left: 0;
+              opacity: 0;
+              transition: opacity .25s ease-in-out;
+              transition: font-size .3s ease-in-out;
+              color: var(--colors-red-salsa);
+            }
+
+            &:hover .line-hover {
+              opacity: 1;
+              transition: opacity .25s ease-in-out;
+              transition: font-size .3s ease-in-out;
+              font-size: 1.5rem;
+            }
           }
-          .line-hover{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            transition: opacity .25s ease-in-out;
-            transition: font-size .3s ease-in-out;
-            color: var(--colors-red-salsa);
-          }
-          &:hover td {
-            opacity: 0;
-            transition: .25s ease-in-out;
-          }
+
           td {
             font-weight: 600;
             padding: .5em 0;

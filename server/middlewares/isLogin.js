@@ -13,6 +13,7 @@ const secretKey = process.env.JWT_SECRET
 
 export async function isLogin(req, res, next) {
     let { userToken, userEmail } = await req.cookies
+    console.log(userToken, userEmail)
     userEmail = userEmail.replace('%40', '@')
     if (userToken) {
         try {

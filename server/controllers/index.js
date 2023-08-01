@@ -76,7 +76,9 @@ export async function redeemCoinsController(req, res) {
     }
 }
 export async function placeBetController(req, res) {
-    const { token, matchId, teamId, amount } = req.body
+    const { matchId, teamId, amount } = req.body
+    const token = await req.cookies.userToken
+    console.log(token)
     if( token ) {
         const decodedToken = await jwt.verify(token, secretKey)
         const user = await prisma.user.findUnique({

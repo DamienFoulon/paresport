@@ -1,5 +1,5 @@
 import './Dashboard.scss';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useJwt } from 'react-jwt';
