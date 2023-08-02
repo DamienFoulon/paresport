@@ -6,6 +6,8 @@ export default async function isLogin(token, email) {
             const result = await axios.post('https://api.paresport.com/api/auth/verifyToken', {
                 token: token,
                 email: email
+            }, {
+                withCredentials: true
             }).then((res) => {
                 return res.status === 200 && res.data.isValid
             })

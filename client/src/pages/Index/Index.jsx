@@ -1,6 +1,7 @@
 import './Index.scss'
 import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import axios from 'axios'
 
 import Navbar from '../../components/Navbar/Navbar'
 import Searchbar from '../../components/Searchbar/Searchbar'
@@ -26,9 +27,11 @@ export default function Index() {
     const [matches, setMatches] = useState([{}])
 
     useEffect(() => {
-        fetch('https://api.paresport.com/api/valorant/matches?sort=upcoming')
-            .then((response) => response.json())
-            .then((data) => setMatches(data))
+        axios.get('https://api.paresport.com/api/valorant/matches?sort=upcoming', {
+            withCredentials: true,
+        }).then((res) => {
+            setMatches(res.data)
+        })
     }, [])
 
     const [betList, setBetList] = useRecoilState(betsAtom)

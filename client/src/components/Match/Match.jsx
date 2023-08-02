@@ -18,8 +18,8 @@ export default function Match(props) {
             slug: e.currentTarget.dataset.teamSlug,
         };
         const match = {
-            id: e.currentTarget.parentNode.parentNode.dataset.matchId,
-            name: e.currentTarget.parentNode.parentNode.dataset.matchName,
+            id: e.currentTarget.parentNode.parentNode.parentNode.dataset.matchId,
+            name: e.currentTarget.parentNode.parentNode.parentNode.dataset.matchName,
         };
 
         const bet = {
@@ -54,11 +54,13 @@ export default function Match(props) {
                 </div>
             </div>
             <div className='draw'>
-                <button className="bet-match-button draw" data-team-id={"DRAW"} data-team-slug={'DRAW'} onClick={addBet}>
-                    <p className="bet-match-button-odds">
-                        {props.oddDraw}
-                    </p>
-                </button>
+                <div className='bet-part'>
+                    <button className="bet-match-button draw" data-team-id={"DRAW"} data-team-slug={'DRAW'} onClick={addBet}>
+                        <p className="bet-match-button-odds">
+                            {props.oddDraw}
+                        </p>
+                    </button>
+                </div>
             </div>
             <div className='team2'>
                 <div className='team-info'>
@@ -67,11 +69,13 @@ export default function Match(props) {
                     </div>
                     <p>{props.team2.slug}</p>
                 </div>
-                <button className="bet-match-button team1" data-team-id={props.team2.id} data-team-slug={props.team2.slug} onClick={addBet}>
-                    <p className="bet-match-button-odds">
-                        {props.odd2}
-                    </p>
-                </button>
+                <div className='bet-part'>
+                    <button className="bet-match-button team1" data-team-id={props.team2.id} data-team-slug={props.team2.slug} onClick={addBet}>
+                        <p className="bet-match-button-odds">
+                            {props.odd2}
+                        </p>
+                    </button>
+                </div>
             </div>
         </div>
     )

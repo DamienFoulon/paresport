@@ -5,6 +5,7 @@ import { useRecoilState } from 'recoil';
 import { betsAtom } from '../../atoms/atoms';
 import axios from 'axios';
 import Cookies from 'js-cookie'
+import isLogin from '../../utils/isLogin';
 
 export default function BetBoard({ bets }) {
     const { t } = useTranslation();
@@ -14,6 +15,7 @@ export default function BetBoard({ bets }) {
     const [ errorMessage, setErrorMessage ] = useState('');
     const [ success, setSuccess ] = useState(false);
     const [ successMessage, setSuccessMessage ] = useState('');
+    const [ isLogged, setIsLogged ] = useState(false);
 
     const deleteBet = (e) => {
         const betId = parseInt(e.target.closest('tr').dataset.betId);
@@ -40,10 +42,20 @@ export default function BetBoard({ bets }) {
             }).then((res) => {
                 return res.data;
             });
-            console.log('user :', await user);
             setUser(await user.user);
         }
-        getUser();
+
+        async function isLogged() {
+            const logged = await isLogin(Cookies.get('userToken'), Cookies.get('userEmail'));
+            setIsLogged(logged);
+            if (logged) {
+                await getUser();
+            }
+        }
+
+        isLogged().then(() => {
+            console.log('user :', user);
+        });
     }, [errorMessage, successMessage]);
 
     const updateBet = (e) => {
@@ -69,13 +81,13 @@ export default function BetBoard({ bets }) {
         const bets = JSON.parse(localStorage.getItem('bets'));
         bets.map((bet, index) => {
             axios.post('https://api.paresport.com/placeBet', {
-                matchId: bet.match.id,
-                teamId: bet.team.id,
-                amount: bet.amount,
-            },
-            {
-                withCredentials: true,
-            }).then(async (res) => {
+                    matchId: bet.match.id,
+                    teamId: bet.team.id,
+                    amount: bet.amount,
+                },
+                {
+                    withCredentials: true,
+                }).then(async (res) => {
                 setIsError(false)
                 setSuccess(true)
                 setSuccessMessage('Bet(s) placed successfully');
@@ -137,7 +149,11 @@ export default function BetBoard({ bets }) {
                 </table>
             </div>
             <div className='bet-board-footer'>
-                <button className='btn btn-primary red-button' onClick={placeBets}>{t('Place bets')}</button>
+                {isLogged ? (
+                    <button className='btn btn-primary red-button' onClick={placeBets}>{t('Place bets')}</button>
+                ) : (
+                    <button className='btn btn-primary red-button' onClick={() => window.location.href = '/login'}>{t('Login to place bets')}</button>
+                )}
             </div>
         </div>
     );
