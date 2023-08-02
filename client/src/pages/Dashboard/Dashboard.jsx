@@ -149,7 +149,7 @@ export default function Dashboard() {
                                 //         </div>
                                 //     )
                                 // })
-                                <MaterialReactTable className={"bet-table"} data={user?.bets} columns={columns} />
+                                <MaterialReactTable className={"bet-table"} data={user?.bets.reverse()} columns={columns} initialState={{ density: 'compact' }}/>
                             ) : (
                                 <div className='empty-list'>
                                     <p>{t('No bets')}</p>
