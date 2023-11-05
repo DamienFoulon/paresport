@@ -189,7 +189,7 @@ export async function valorantMatches(req, res) {
                     });
 
                     return {
-                        id: match.match ? match.match.id : 'TBD',
+                        id: match.match ? match.match.id: 'TBD',
                         name: match.match ? `${match.league.name} - ${match.tournament.season.name} ${match.blockName} | ${match.match.teams[0].code} vs ${match.match.teams[1].code}` : 'TBD',
                         startTime: new Date(match.startTime),
                         game: 'valorant',

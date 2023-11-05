@@ -230,7 +230,7 @@ const resources = {
 
 export default i18n.use(initReactI18next).init({
   resources,
-  lng: "en",
+  lng: "fr",
   interpolation: {
     escapeValue: false,
   },

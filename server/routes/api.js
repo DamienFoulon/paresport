@@ -13,6 +13,7 @@ import {
 import { lol, lolMatches, lolLeagues } from '../controllers/api/lol.js';
 import { dota2, dota2Matches, dota2Leagues } from "../controllers/api/dota2.js";
 import { csgo, csgoMatches, csgoLeagues } from "../controllers/api/csgo.js";
+import { rl, rlMatches, rlLeagues } from "../controllers/api/rl.js";
 import {
     authVerifyToken,
     authLogout,
@@ -59,6 +60,10 @@ router.get('/dota2/leagues', dota2Leagues);
 router.get('/csgo', csgo);
 router.get('/csgo/matches', csgoMatches);
 router.get('/csgo/leagues', csgoLeagues);
+
+router.get('/rl', rl);
+router.get('/rl/matches', rlMatches);
+router.get('/rl/leagues', rlLeagues);
 
 // Auth
 router.post('/auth/register', authRegister);
